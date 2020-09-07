@@ -1,10 +1,4 @@
-/* global $$, $, np */
-
-document.write(`<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Noten Planer</title>`) // HTML Head
-
-// ####################################
+/* global np, session */
 
 var nav = ''
 var navigation = {
@@ -49,8 +43,8 @@ navigation.items.forEach((item, i) => {
 
 // ####################################
 
-$$(document)(() => {
-  $.loadStyle(`
+window.addEventListener('load', () => {
+  document.querySelector('head').innerHTML += `<style type="text/css">
     /* Colors: */
     :root {
       --main: #910c0c;
@@ -59,9 +53,9 @@ $$(document)(() => {
       --mtxt: #fff;
       --a-color: #c4c2c2;
     }
-  `)
+  </style>`
 
-  const body = $$('body')
+  const body = document.querySelector('body')
   body.innerHTML += `
     <main></main>
     <nav>${nav}</nav>
@@ -70,15 +64,17 @@ $$(document)(() => {
   // ####################################
 
   window.np = {
-    currentPage: $.storage.local.get('np-currentPage') || 0,
-    main: $$('body main'),
+    currentPage: session['np-currentPage'] || 0,
+    main: document.querySelector('body main'),
     loadContent: function (navId) {
       np.currentPage = navId
 
-      $$('body nav div.nav-item').removeClass('active')
-      $$(`body nav div.nav-item[data-nav-index="${navId}"]`).addClass('active')
+      document.querySelectorAll('body nav div.nav-item').forEach((item) => {
+        item.classList.remove('active')
+      })
+      document.querySelector(`body nav div.nav-item[data-nav-index="${navId}"]`).classList.add('active')
 
-      $.storage.local.set('np-currentPage', navId)
+      session['np-currentPage'] = navId
 
       np.loadContentInToMain()
     },
