@@ -1,0 +1,61 @@
+{
+  "short_name": "Noten Planer",
+  "name": "Noten Planer",
+  "description": "Verwalte die Noten deiner Schüler",
+  "icons": [
+    {
+      "src": "/src/img/Noten Planer_16.png",
+      "type": "image/png",
+      "sizes": "16x16"
+    },
+    {
+      "src": "/src/img/Noten Planer_32.png",
+      "type": "image/png",
+      "sizes": "32x32"
+    },
+    {
+      "src": "/src/img/Noten Planer_64.png",
+      "type": "image/png",
+      "sizes": "64x64"
+    },
+    {
+      "src": "/src/img/Noten Planer_128.png",
+      "type": "image/png",
+      "sizes": "128x128"
+    },
+    {
+      "src": "/src/img/Noten Planer_192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/src/img/Noten Planer_256.png",
+      "type": "image/png",
+      "sizes": "256x256"
+    },
+    {
+      "src": "/src/img/Noten Planer_512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    },
+    {
+      "src": "/src/img/Noten Planer.svg",
+      "type": "image/svg+xml",
+      "sizes": "640x640"
+    }
+  ],
+  "start_url": "/stuff/",
+  "background_color": "#910c0c",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#910c0c",
+  "shortcuts": [
+    {
+      "name": "Noten Planer",
+      "short_name": "Noten Planer",
+      "description": "Verwalte die Noten deiner Schüler",
+      "url": "/stuff/",
+      "icons": [{ "src": "/images/today.png", "sizes": "192x192" }]
+    }
+  ]
+}

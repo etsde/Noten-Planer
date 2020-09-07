@@ -1,3 +1,5 @@
+@import "./fonts.css";
+
 * {
   margin: 0;
   padding: 0;
@@ -52,6 +54,22 @@ main {
 
 /* General: */
 nav div.nav-item {
-  cursor: pointer;
   font-size: 175%;
+}
+
+nav div.nav-item.active {
+  color: var(--a-color);
+}
+
+nav div.nav-item:hover {
+  cursor: pointer;
+  color: var(--a-color);
+}
+
+main h1,h2,h3,h4,h5,h6 {
+  font-family: "Roboto", Arial Black, sans-serif;
+}
+
+nav,main {
+  font-family: "Open Sans", Arial, sans-serif;
 }
