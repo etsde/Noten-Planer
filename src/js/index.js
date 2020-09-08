@@ -39,7 +39,7 @@ const navigation = {
       href: 'classroom',
       icon: {
         type: 's',
-        name: 'university'
+        name: 'school'
       }
     }
   ]
