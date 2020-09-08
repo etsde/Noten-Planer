@@ -71,6 +71,16 @@ window.addEventListener('load', () => {
   // ####################################
 
   window.np = {
+    colors: [
+      '#ff0000',
+      '#4579de',
+      '#f7f60f',
+      '#631717',
+      '#11e71e',
+      '#11821f',
+      '#ba1a9c',
+      '#a1a1a1'
+    ],
     currentPage: session['np-currentPage'] || 0,
     main: document.querySelector('body main'),
     loadContent: function (navId) {
