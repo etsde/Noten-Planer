@@ -79,7 +79,8 @@ window.addEventListener('load', () => {
       '#11e71e',
       '#11821f',
       '#ba1a9c',
-      '#a1a1a1'
+      '#a1a1a1',
+      '#f4830d'
     ],
     currentPage: session['np-currentPage'] || 0,
     main: document.querySelector('body main'),
@@ -102,6 +103,16 @@ window.addEventListener('load', () => {
       `
     }
   }
+
+  np.colorpicker = (function () {
+    var a = ''
+
+    np.colors.forEach((item) => {
+      a += `<div onclick="alert(this.getAttribute('data-color-hex'))" class="color" data-color-hex="${item}" style="background:${item};border:2px solid var(--a-color);border-radius:500px;height:${(100 / np.colors.length) / 2}vw;width:${(100 / np.colors.length) / 2}vw"></div>`
+    })
+
+    return a
+  })()
 
   // ####################################
 
