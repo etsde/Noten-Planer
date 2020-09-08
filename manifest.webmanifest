@@ -4,47 +4,47 @@
   "description": "Verwalte die Noten deiner Schüler",
   "icons": [
     {
-      "src": "/src/img/Noten Planer_16.png",
+      "src": "https://greencoder001.github.io/Noten-Planer/src/img/Noten Planer_16.png",
       "type": "image/png",
       "sizes": "16x16"
     },
     {
-      "src": "/src/img/Noten Planer_32.png",
+      "src": "https://greencoder001.github.io/Noten-Planer/src/img/Noten Planer_32.png",
       "type": "image/png",
       "sizes": "32x32"
     },
     {
-      "src": "/src/img/Noten Planer_64.png",
+      "src": "https://greencoder001.github.io/Noten-Planer/src/img/Noten Planer_64.png",
       "type": "image/png",
       "sizes": "64x64"
     },
     {
-      "src": "/src/img/Noten Planer_128.png",
+      "src": "https://greencoder001.github.io/Noten-Planer/src/img/Noten Planer_128.png",
       "type": "image/png",
       "sizes": "128x128"
     },
     {
-      "src": "/src/img/Noten Planer_192.png",
+      "src": "https://greencoder001.github.io/Noten-Planer/src/img/Noten Planer_192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "/src/img/Noten Planer_256.png",
+      "src": "https://greencoder001.github.io/Noten-Planer/src/img/Noten Planer_256.png",
       "type": "image/png",
       "sizes": "256x256"
     },
     {
-      "src": "/src/img/Noten Planer_512.png",
+      "src": "https://greencoder001.github.io/Noten-Planer/src/img/Noten Planer_512.png",
       "type": "image/png",
       "sizes": "512x512"
     },
     {
-      "src": "/src/img/Noten Planer.svg",
+      "src": "https://greencoder001.github.io/Noten-Planer/src/img/Noten Planer.svg",
       "type": "image/svg+xml",
       "sizes": "640x640"
     }
   ],
-  "start_url": "/stuff/",
+  "start_url": "https://greencoder001.github.io/Noten-Planer/stuff/",
   "background_color": "#910c0c",
   "display": "standalone",
   "scope": "/",
@@ -54,8 +54,8 @@
       "name": "Noten Planer",
       "short_name": "Noten Planer",
       "description": "Verwalte die Noten deiner Schüler",
-      "url": "/stuff/",
-      "icons": [{ "src": "/images/today.png", "sizes": "192x192" }]
+      "url": "https://greencoder001.github.io/Noten-Planer/stuff/",
+      "icons": [{"src":"https://greencoder001.github.io/Noten-Planer/src/img/Noten Planer_16.png","type":"image/png","sizes":"16x16"},{"src":"https://greencoder001.github.io/Noten-Planer/src/img/Noten Planer_32.png","type":"image/png","sizes":"32x32"},{"src":"https://greencoder001.github.io/Noten-Planer/src/img/Noten Planer_64.png","type":"image/png","sizes":"64x64"},{"src":"https://greencoder001.github.io/Noten-Planer/src/img/Noten Planer_128.png","type":"image/png","sizes":"128x128"},{"src":"https://greencoder001.github.io/Noten-Planer/src/img/Noten Planer_192.png","type":"image/png","sizes":"192x192"},{"src":"https://greencoder001.github.io/Noten-Planer/src/img/Noten Planer_256.png","type":"image/png","sizes":"256x256"},{"src":"https://greencoder001.github.io/Noten-Planer/src/img/Noten Planer_512.png","type":"image/png","sizes":"512x512"},{"src":"https://greencoder001.github.io/Noten-Planer/src/img/Noten Planer.svg","type":"image/svg+xml","sizes":"640x640"}]
     }
   ]
 }
