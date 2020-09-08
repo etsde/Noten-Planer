@@ -3,8 +3,7 @@
 var content = {
   home: '',
   students: '',
-  subjects: '',
-  classroom: ''
+  subjects: ''
 }
 
 var nav = ''
@@ -33,7 +32,7 @@ const navigation = {
         type: 's',
         name: 'boxes'
       }
-    },
+    }/* ,
     {
       name: 'Deine Klasse',
       href: 'classroom',
@@ -41,7 +40,7 @@ const navigation = {
         type: 's',
         name: 'school'
       }
-    }
+    } */
   ]
 }
 navigation.items.forEach((item, i) => {
@@ -100,7 +99,23 @@ window.addEventListener('load', () => {
       const cp = navigation.items[np.currentPage]
       np.main.innerHTML = `
         <h1 class="center">${cp.name}</h1>
+        ${content[cp.href]}
       `
+    },
+    querystring: function () {
+      var p = {}
+
+      var a = window.location.search.startsWith('?') ? window.location.search.replace('?', '') : window.location.search
+
+      for (const b of a.split('&')) {
+        try {
+          p[decodeURIComponent(b.split('=')[0])] = JSON.parse(decodeURIComponent(b.split('=')[1]))
+        } catch {
+          p[decodeURIComponent(b.split('=')[0])] = decodeURIComponent(b.split('=')[1])
+        }
+      }
+
+      return p
     }
   }
 
