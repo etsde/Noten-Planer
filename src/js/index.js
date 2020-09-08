@@ -1,7 +1,14 @@
 /* global np, session */
 
+var content = {
+  home: '',
+  students: '',
+  subjects: '',
+  classroom: ''
+}
+
 var nav = ''
-var navigation = {
+const navigation = {
   items: [
     {
       name: 'Home',
