@@ -98,7 +98,7 @@ window.addEventListener('load', () => {
     loadContentInToMain: function () {
       const cp = navigation.items[np.currentPage]
       np.main.innerHTML = `
-        <h1>${cp.name}</h1>
+        <h1 class="center">${cp.name}</h1>
       `
     }
   }
