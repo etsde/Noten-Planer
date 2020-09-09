@@ -88,3 +88,7 @@ nav,main {
   display: flex;
   justify-content: center;
 }
+
+.danger {
+  background-color: #ba1e1e;
+}

@@ -19,12 +19,13 @@ var content = {
       stdview += `
         <div class="student">
           <h5 class="name">${std.fullName}</h5>
-          <button class="delete fas fa-trash" title="Schüler löschen"></button>
+          <button class="danger delete fas fa-trash" title="Schüler löschen"></button>
         </div>
       `
     })
 
     return `
+      <div class="adduser fas fa-plus-circle"></div>
       <div class="hard center">
         ${stdview}
       </div>
