@@ -1,9 +1,40 @@
 /* global np, session */
 
 var content = {
-  home: '',
-  students: '',
-  subjects: ''
+  home: function () {
+    return `
+      <div class="impex">
+        <div class="import">
+          <h3>Importieren</h3>
+        </div>
+        <div class="export">
+          <h3>Exportieren</h3>
+        </div>
+      </div>
+    `
+  },
+  students: function () {
+    var stdview = ''
+    session.students.forEach((std) => {
+      stdview += `
+        <div class="student">
+          <h5 class="name">${std.fullName}</h5>
+          <button class="delete fas fa-trash" title="Schüler löschen"></button>
+        </div>
+      `
+    })
+
+    return `
+      <div class="hard center">
+        ${stdview}
+      </div>
+    `
+  },
+  subjects: function () {
+    return `
+
+    `
+  }
 }
 
 var nav = ''
@@ -99,7 +130,7 @@ window.addEventListener('load', () => {
       const cp = navigation.items[np.currentPage]
       np.main.innerHTML = `
         <h1 class="center">${cp.name}</h1>
-        ${content[cp.href]}
+        ${content[cp.href]()}
       `
     },
     querystring: function () {
@@ -119,6 +150,26 @@ window.addEventListener('load', () => {
     }
   }
 
+  np.hash = function () {
+    var p = {}
+
+    var a = window.location.hash.startsWith('#') ? window.location.hash.replace('#', '') : window.location.hash
+
+    for (const b of a.split('&')) {
+      try {
+        p[decodeURIComponent(b.split('=')[0])] = JSON.parse(decodeURIComponent(b.split('=')[1]))
+      } catch {
+        p[decodeURIComponent(b.split('=')[0])] = decodeURIComponent(b.split('=')[1])
+      }
+    }
+
+    return p
+  }
+
+  np.hashTo = function (a) {
+    window.location.hash = '#' + a
+  }
+
   np.colorpicker = (function () {
     var a = ''
 
@@ -130,6 +181,8 @@ window.addEventListener('load', () => {
   })()
 
   // ####################################
+
+  session.students = !session.students ? [] : session.students
 
   np.loadContent(np.currentPage)
 })

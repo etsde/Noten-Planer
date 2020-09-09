@@ -83,3 +83,8 @@ nav,main {
 .center {
   text-align: center;
 }
+
+.hard.center {
+  display: flex;
+  justify-content: center;
+}
