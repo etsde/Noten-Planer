@@ -14,18 +14,27 @@ var content = {
     `
   },
   students: function () {
+    var adduser = !!np.hash() === '#adduser'
+
     var stdview = ''
+
+    if (adduser) {
+      np.popup(`
+
+      `)
+    }
+
     session.students.forEach((std) => {
       stdview += `
         <div class="student">
           <h5 class="name">${std.fullName}</h5>
-          <button class="danger delete fas fa-trash" title="Schüler löschen"></button>
+          <span class="danger delete"><button class="fas fa-trash" title="Schüler löschen"></button></span>
         </div>
       `
     })
 
     return `
-      <div class="adduser fas fa-plus-circle"></div>
+      <div class="adduser fas fa-plus-circle" onclick="np.hashTo('adduser')"></div>
       <div class="hard center">
         ${stdview}
       </div>
@@ -152,19 +161,7 @@ window.addEventListener('load', () => {
   }
 
   np.hash = function () {
-    var p = {}
-
-    var a = window.location.hash.startsWith('#') ? window.location.hash.replace('#', '') : window.location.hash
-
-    for (const b of a.split('&')) {
-      try {
-        p[decodeURIComponent(b.split('=')[0])] = JSON.parse(decodeURIComponent(b.split('=')[1]))
-      } catch {
-        p[decodeURIComponent(b.split('=')[0])] = decodeURIComponent(b.split('=')[1])
-      }
-    }
-
-    return p
+    return window.location.hash
   }
 
   np.hashTo = function (a) {

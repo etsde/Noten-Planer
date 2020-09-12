@@ -91,4 +91,28 @@ nav,main {
 
 .danger {
   background-color: #ba1e1e;
+  color: #fff;
+}
+
+.danger:hover {
+  background-color: #da1818;
+}
+
+.danger * {
+  background-color: #ba1e1e;
+  color: #fff;
+}
+
+.danger:hover * {
+  background-color: #da1818;
+}
+
+.delete {
+  padding: 1%;
+}
+
+.delete * {
+  border: none;
+  outline: none;
+  background: none;
 }
