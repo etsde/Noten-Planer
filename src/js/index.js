@@ -34,13 +34,21 @@ window.Student = class Student {
 var content = {
   home: function () {
     return `
-      <div class="impex">
-        <div class="import">
-          <h3>Importieren</h3>
-        </div>
-        <div class="export">
-          <h3>Exportieren</h3>
-        </div>
+      <div class="impex hard center">
+        <ul>
+          <li class="no-li">
+            <div class="import container">
+              <h3>Importieren</h3>
+              <input type="number" placeholder="Token: Bitte merken!" value="${np.random(1000, 9999)}" />
+            </div>
+          </li>
+          <li class="no-li">
+            <div class="export container">
+              <h3>Exportieren</h3>
+              <input type="number" placeholder="Token: Bitte merken!" value="${np.random(1000, 9999)}" />
+            </div>
+          </li>
+        </ul>
       </div>
     `
   },
@@ -155,6 +163,9 @@ window.addEventListener('load', () => {
       '#a1a1a1',
       '#f4830d'
     ],
+    random: function (min, max) {
+      return Math.floor(Math.random() * (max - min)) + min
+    },
     reload: function () {
       window.location = window.location.href
     },
@@ -244,6 +255,7 @@ window.addEventListener('load', () => {
   // ####################################
 
   session.students = !session.students ? [] : session.students
+  session.subjects = !session.subjects ? [] : session.subjects
 
   np.loadContent(np.currentPage)
 })
