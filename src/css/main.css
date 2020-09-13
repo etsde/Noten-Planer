@@ -116,3 +116,14 @@ nav,main {
   outline: none;
   background: none;
 }
+
+.users li {
+  list-style: none;
+  margin-bottom: 10%;
+}
+
+.users li div {
+  background: var(--main);
+  padding: 5%;
+  border-radius: 10px;
+}

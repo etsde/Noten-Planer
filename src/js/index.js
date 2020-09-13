@@ -1,5 +1,36 @@
 /* global np, session */
 
+window.Student = class Student {
+  constructor (fullName) {
+    this.fullName = fullName
+
+    this.firstNames = []
+    this.names = []
+
+    this.firstName = this.fullName.split(' ')[0]
+    this.lastName = this.fullName.split(' ')[this.fullName.split(' ').length - 1]
+
+    this.initFirstNames()
+    this.initNames()
+  }
+
+  initFirstNames () {
+    this.fullName.split(' ').forEach((item, i) => {
+      if (i !== this.fullName.split(' ').length - 1) {
+        this.firstNames.push(item)
+      }
+    })
+  }
+
+  initNames () {
+    this.fullName.split(' ').forEach((item, i) => {
+      if (i !== this.fullName.split(' ').length) {
+        this.names.push(item)
+      }
+    })
+  }
+}
+
 var content = {
   home: function () {
     return `
@@ -14,9 +45,9 @@ var content = {
     `
   },
   students: function () {
-    var adduser = !!np.hash() === '#adduser'
+    var adduser = np.hash() === '#adduser'
 
-    var stdview = ''
+    var stdview = '<ul class="users">'
 
     if (adduser) {
       np.popup(`
@@ -24,14 +55,16 @@ var content = {
       `)
     }
 
-    session.students.forEach((std) => {
+    session.students.forEach((std, i) => {
       stdview += `
-        <div class="student">
-          <h5 class="name">${std.fullName}</h5>
+        <li><div class="student">
+          <input data-student-id="${i}" oninput="session.students[this.getAttribute('data-student-id')]=new Student(this.value)" type="text" value="${std.fullName}" placeholder="Name des Schülers" />
           <span class="danger delete"><button class="fas fa-trash" title="Schüler löschen"></button></span>
-        </div>
+        </div></li>
       `
     })
+
+    stdview += '</ul>'
 
     return `
       <div class="adduser fas fa-plus-circle" onclick="np.hashTo('adduser')"></div>
@@ -122,8 +155,18 @@ window.addEventListener('load', () => {
       '#a1a1a1',
       '#f4830d'
     ],
+    reload: function () {
+      window.location = window.location.href
+    },
+    newUser: function (std) {
+      session.students.push(std)
+      np.reload()
+    },
     currentPage: session['np-currentPage'] || 0,
     main: document.querySelector('body main'),
+    popup: function (text) {
+
+    },
     loadContent: function (navId) {
       np.currentPage = navId
 
@@ -142,6 +185,26 @@ window.addEventListener('load', () => {
         <h1 class="center">${cp.name}</h1>
         ${content[cp.href]()}
       `
+    },
+    encode: function (a, key = 42) {
+      a = a.toString()
+      a = a.split('')
+      a.forEach(function (item, i) {
+        a[i] = (item.charCodeAt(0) * parseInt(key)).toString()
+      })
+      a = a.join(';')
+      a = window.btoa(a)
+      return a
+    },
+    decode: function (a, key = 42) {
+      a = window.atob(a.toString())
+      a = a.split(';')
+      a.forEach(function (item, i) {
+        item = item.endsWith(';') ? item.substr(item.length - 1) : item
+        a[i] = String.fromCharCode(parseInt(item) / key)
+      })
+      a = a.join('')
+      return a
     },
     querystring: function () {
       var p = {}
