@@ -33,7 +33,7 @@ window.Student = class Student {
 
 var content = {
   home: function () {
-    return `
+    return html`
       <div class="impex hard center">
         <ul>
           <li class="no-li">
@@ -55,16 +55,16 @@ var content = {
   students: function () {
     var adduser = np.hash() === '#adduser'
 
-    var stdview = '<ul class="users">'
+    var stdview = html`<ul class="users">`
 
     if (adduser) {
-      np.popup(`
+      np.popup(html`
 
       `)
     }
 
     session.students.forEach((std, i) => {
-      stdview += `
+      stdview += html`
         <li><div class="student">
           <input data-student-id="${i}" oninput="session.students[this.getAttribute('data-student-id')]=new Student(this.value)" type="text" value="${std.fullName}" placeholder="Name des Schülers" />
           <span class="danger delete"><button class="fas fa-trash" title="Schüler löschen"></button></span>
@@ -74,7 +74,7 @@ var content = {
 
     stdview += '</ul>'
 
-    return `
+    return html`
       <div class="adduser fas fa-plus-circle" onclick="np.hashTo('adduser')"></div>
       <div class="hard center">
         ${stdview}
@@ -82,7 +82,7 @@ var content = {
     `
   },
   subjects: function () {
-    return `
+    return html`
 
     `
   }
