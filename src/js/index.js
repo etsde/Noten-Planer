@@ -1,5 +1,7 @@
 /* global np, session */
 
+var html = () => {}
+
 window.Student = class Student {
   constructor (fullName) {
     this.fullName = fullName
