@@ -1,6 +1,6 @@
 /* global np, session */
 
-var html = () => {}
+var html = (a) => { return a[0] }
 
 window.Student = class Student {
   constructor (fullName) {
