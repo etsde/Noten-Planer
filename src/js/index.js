@@ -52,13 +52,16 @@ var content = {
           <li class="no-li">
             <div class="import container">
               <h3>Importieren</h3>
+              <input class="large input" type="text" placeholder="Bitte bei Export erhaltenes Backup einfügen." /><br />
               <input type="number" onkeypress="return (event.charCode >= 48 && this.value.length <= 3)" pattern="[0-9]{4}" min="0" step="1" max="9999" placeholder="Token: Bei Export erhalten!" value="` + np.random(1000, 9999) + `" />
+              <br /><button onclick="np.imp(this.parentNode)">Importieren</button>
             </div>
           </li>` + html`
           <li class="no-li">
             <div class="import container">
               <h3>Exportieren</h3>
               <input type="number" onkeypress="return (event.charCode >= 48 && this.value.length <= 3)" pattern="[0-9]{4}" min="0" step="1" max="9999" pattern="[0-9]{4}" placeholder="Token: Bitte merken!" value="` + np.random(1000, 9999) + `" />
+              <br /><button onclick="np.exp(this.parentNode)">Exportieren</button>
             </div>
           </li>` + `
         </ul>
@@ -171,6 +174,21 @@ window.addEventListener('load', () => {
     ],
     random: function (min, max) {
       return Math.floor(Math.random() * (max - min)) + min
+    },
+    imp: function (elem) {
+      try {
+        window.session = JSON.parse(np.decode(elem.querySelector('input').value), elem.querySelector('input[max]').value)
+      } catch {
+        window.alert('ERROR: Can\'t import! Please try it again.')
+      }
+      np.reload()
+    },
+    exp: function (elem) {
+      try {
+        console.log(np.encode(JSON.stringify(session), elem.querySelector('input[max]').value))
+      } catch {
+        window.alert('ERROR: Can\'t export! Please try it again.')
+      }
     },
     reload: function () {
       window.location = window.location.href

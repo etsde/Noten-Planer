@@ -151,3 +151,7 @@ nav,main {
 nav {
   position: fixed;
 }
+
+input.input.large {
+  width: 90% !important;
+}
