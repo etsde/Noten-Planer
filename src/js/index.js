@@ -1,6 +1,17 @@
 /* global np, session */
 
-var html = (a) => { return a[0] }
+var html = (a) => {
+  var b = ''
+
+  a.forEach((item) => {
+    b += item
+  })
+
+  return b
+}
+
+var $$ = document.querySelectorAll
+var $ = document.querySelector
 
 window.Student = class Student {
   constructor (fullName) {
@@ -41,35 +52,27 @@ var content = {
           <li class="no-li">
             <div class="import container">
               <h3>Importieren</h3>
-              <input type="number" placeholder="Token: Bitte merken!" value="${np.random(1000, 9999)}" />
+              <input type="number" onkeypress="return (event.charCode >= 48 && this.value.length <= 3)" pattern="[0-9]{4}" min="0" step="1" max="9999" placeholder="Token: Bei Export erhalten!" value="` + np.random(1000, 9999) + `" />
             </div>
-          </li>
+          </li>` + html`
           <li class="no-li">
-            <div class="export container">
+            <div class="import container">
               <h3>Exportieren</h3>
-              <input type="number" placeholder="Token: Bitte merken!" value="${np.random(1000, 9999)}" />
+              <input type="number" onkeypress="return (event.charCode >= 48 && this.value.length <= 3)" pattern="[0-9]{4}" min="0" step="1" max="9999" pattern="[0-9]{4}" placeholder="Token: Bitte merken!" value="` + np.random(1000, 9999) + `" />
             </div>
-          </li>
+          </li>` + `
         </ul>
       </div>
     `
   },
   students: function () {
-    var adduser = np.hash() === '#adduser'
-
     var stdview = html`<ul class="users">`
-
-    if (adduser) {
-      np.popup(html`
-
-      `)
-    }
 
     session.students.forEach((std, i) => {
       stdview += html`
         <li><div class="student">
-          <input data-student-id="${i}" oninput="session.students[this.getAttribute('data-student-id')]=new Student(this.value)" type="text" value="${std.fullName}" placeholder="Name des Schülers" />
-          <span class="danger delete"><button class="fas fa-trash" title="Schüler löschen"></button></span>
+          <input data-student-id="` + i + '" oninput="session.students[this.getAttribute(\'data-student-id\')]=new Student(this.value)" type="text" value="' + std.fullName + `" placeholder="Name des Schülers" />
+          ` + html`<span class="danger delete"><button class="fas fa-trash" title="Schüler löschen"></button></span>` + `
         </div></li>
       `
     })
@@ -79,7 +82,7 @@ var content = {
     return html`
       <div class="adduser fas fa-plus-circle" onclick="np.hashTo('adduser')"></div>
       <div class="hard center">
-        ${stdview}
+        ` + stdview + `
       </div>
     `
   },
@@ -154,6 +157,7 @@ window.addEventListener('load', () => {
   // ####################################
 
   window.np = {
+    onHash: [],
     colors: [
       '#ff0000',
       '#4579de',
@@ -178,7 +182,7 @@ window.addEventListener('load', () => {
     currentPage: session['np-currentPage'] || 0,
     main: document.querySelector('body main'),
     popup: function (text) {
-
+      $('html body .popup').innerHTML = ''
     },
     loadContent: function (navId) {
       np.currentPage = navId
@@ -242,6 +246,9 @@ window.addEventListener('load', () => {
 
   np.hashTo = function (a) {
     window.location.hash = '#' + a
+    np.onHash.forEach((handler) => {
+      handler(a)
+    })
   }
 
   np.colorpicker = (function () {

@@ -135,6 +135,14 @@ nav,main {
   border-radius: 10px;
 }
 
+.impex {
+  width: 100vw;
+}
+
+.impex ul {
+  width: 30vw;
+}
+
 .no-li {
   list-style: none;
   margin-bottom: 10%;
