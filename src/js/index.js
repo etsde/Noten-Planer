@@ -10,8 +10,8 @@ var html = (a) => {
   return b
 }
 
-var $$ = document.querySelectorAll
-var $ = document.querySelector
+const $$ = document.querySelectorAll
+const $ = document.querySelector
 
 window.Student = class Student {
   constructor (fullName) {
@@ -53,15 +53,13 @@ var content = {
             <div class="import container">
               <h3>Importieren</h3>
               <input class="large input" type="text" placeholder="Bitte bei Export erhaltenes Backup einfügen." /><br />
-              <input type="number" onkeypress="return (event.charCode >= 48 && this.value.length <= 3)" pattern="[0-9]{4}" min="0" step="1" max="9999" placeholder="Token: Bei Export erhalten!" value="` + np.random(1000, 9999) + `" />
-              <br /><button onclick="np.imp(this.parentNode)">Importieren</button>
+              <button onclick="np.imp(this.parentNode)">Importieren</button>
             </div>
           </li>` + html`
           <li class="no-li">
             <div class="import container">
               <h3>Exportieren</h3>
-              <input type="number" onkeypress="return (event.charCode >= 48 && this.value.length <= 3)" pattern="[0-9]{4}" min="0" step="1" max="9999" pattern="[0-9]{4}" placeholder="Token: Bitte merken!" value="` + np.random(1000, 9999) + `" />
-              <br /><button onclick="np.exp(this.parentNode)">Exportieren</button>
+              <button onclick="np.exp(this.parentNode)">Exportieren</button>
             </div>
           </li>` + `
         </ul>
@@ -75,7 +73,7 @@ var content = {
       stdview += html`
         <li><div class="student">
           <input data-student-id="` + i + '" oninput="session.students[this.getAttribute(\'data-student-id\')]=new Student(this.value)" type="text" value="' + std.fullName + `" placeholder="Name des Schülers" />
-          ` + html`<span class="danger delete"><button class="fas fa-trash" title="Schüler löschen"></button></span>` + `
+          ` + html`<span class="danger delete"><button class="fas fa-trash" title="Schüler löschen" onclick="session.students = np.remove(session.students, parseInt(this.parentNode.parentNode.querySelector('input[data-student-id]').getAttribute('data-student-id'))); np.reload()"></button></span>` + `
         </div></li>
       `
     })
@@ -160,6 +158,13 @@ window.addEventListener('load', () => {
   // ####################################
 
   window.np = {
+    remove: function (arr, value) {
+      var index = value
+      if (index > -1) {
+        arr.splice(index, 1)
+      }
+      return arr
+    },
     onHash: [],
     colors: [
       '#ff0000',
@@ -177,7 +182,7 @@ window.addEventListener('load', () => {
     },
     imp: function (elem) {
       try {
-        window.session = JSON.parse(np.decode(elem.querySelector('input').value), elem.querySelector('input[max]').value)
+        window.session = JSON.parse(np.decode(elem.querySelector('input').value))
       } catch {
         window.alert('ERROR: Can\'t import! Please try it again.')
       }
@@ -185,7 +190,7 @@ window.addEventListener('load', () => {
     },
     exp: function (elem) {
       try {
-        console.log(np.encode(JSON.stringify(session), elem.querySelector('input[max]').value))
+        console.log(np.encode(JSON.stringify(session)))
       } catch {
         window.alert('ERROR: Can\'t export! Please try it again.')
       }
