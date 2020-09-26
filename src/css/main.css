@@ -111,13 +111,14 @@ nav,main {
 }
 
 .delete {
-  padding: 1%;
+  padding: 3%;
 }
 
 .delete * {
   border: none;
   outline: none;
   background: none;
+  font-size: 150%;
 }
 
 .users {
