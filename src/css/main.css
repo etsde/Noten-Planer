@@ -120,6 +120,10 @@ nav,main {
   background: none;
 }
 
+.users {
+  width: 75vw;
+}
+
 .users li {
   list-style: none;
   margin-bottom: 10%;
@@ -129,6 +133,11 @@ nav,main {
   background: var(--main);
   padding: 5%;
   border-radius: 10px;
+}
+
+.users input {
+  width: 60%;
+  height: 30%;
 }
 
 .container {
