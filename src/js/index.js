@@ -159,6 +159,16 @@ window.addEventListener('load', () => {
   // ####################################
 
   window.np = {
+    move: function (arr, oldIndex, newIndex) {
+      if (newIndex >= arr.length) {
+        var k = newIndex - arr.length + 1
+        while (k--) {
+          arr.push(undefined)
+        }
+      }
+      arr.splice(newIndex, 0, arr.splice(oldIndex, 1)[0])
+      return arr
+    },
     remove: function (arr, value) {
       var index = value
       if (index > -1) {

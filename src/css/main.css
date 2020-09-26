@@ -177,3 +177,9 @@ input.input.large {
   color: var(--green);
   z-index: 100;
 }
+
+
+/* hover cursor */
+.delete, .adduser, .delete * {
+  cursor: pointer;
+}
