@@ -81,7 +81,7 @@ var content = {
     stdview += '</ul>'
 
     return html`
-      <div class="adduser fas fa-plus-circle" onclick="np.hashTo('adduser')"></div>
+      <div class="adduser fas fa-plus-circle" onclick="session.students.push(new Student('Neuer Schüler')); np.reload()"></div>
       <div class="hard center">
         ` + stdview + `
       </div>
@@ -146,6 +146,7 @@ window.addEventListener('load', () => {
       --text: #000;
       --mtxt: #fff;
       --a-color: #c4c2c2;
+      --green: #1f6243;
     }
   </style>`
 

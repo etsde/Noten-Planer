@@ -27,6 +27,7 @@ nav {
 /* Layout: */
 nav,main,body {
   width: 100%;
+  overflow: hidden;
 }
 
 nav,main {
@@ -46,6 +47,8 @@ nav {
 main {
   height: 90vh;
   top: 0;
+  margin-bottom: 20%;
+  overflow: auto;
 }
 
 /* ##################################### */
@@ -154,4 +157,13 @@ nav {
 
 input.input.large {
   width: 90% !important;
+}
+
+.adduser {
+  position: fixed;
+  top: 2%;
+  right: 2%;
+  font-size: 30pt;
+  color: var(--green);
+  z-index: 100;
 }
