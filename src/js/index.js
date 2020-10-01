@@ -201,7 +201,8 @@ window.addEventListener('load', () => {
     },
     exp: function (elem) {
       try {
-        console.log(np.encode(JSON.stringify(session)))
+        navigator.clipboard.writeText(np.encode(JSON.stringify(session)))
+        window.alert('Export in Zwischenablage kopiert.')
       } catch {
         window.alert('ERROR: Can\'t export! Please try it again.')
       }
