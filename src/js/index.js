@@ -13,6 +13,12 @@ var html = (a) => {
 const $$ = document.querySelectorAll
 const $ = document.querySelector
 
+window.Subject = class Subject {
+  constructor (name) {
+    this.name = name
+  }
+}
+
 window.Student = class Student {
   constructor (fullName) {
     this.fullName = fullName
@@ -72,6 +78,7 @@ var content = {
     session.students.forEach((std, i) => {
       stdview += html`
         <li><div class="student">
+          <i class="fas fa-caret-square-down"></i>
           <input data-student-id="` + i + '" oninput="session.students[this.getAttribute(\'data-student-id\')]=new Student(this.value)" type="text" value="' + std.fullName + `" placeholder="Name des Schülers" />
           ` + html`<span class="danger delete"><button class="fas fa-trash" title="Schüler löschen" onclick="session.students = np.remove(session.students, parseInt(this.parentNode.parentNode.querySelector('input[data-student-id]').getAttribute('data-student-id'))); np.reload()"></button></span>` + `
         </div></li>
@@ -88,8 +95,25 @@ var content = {
     `
   },
   subjects: function () {
-    return html`
+    var subview = html`<ul class="subjects">`
 
+    session.subjects.forEach((sub, i) => {
+      subview += html`
+        <li><div class="subject">
+          <i class="fas fa-caret-square-down"></i>
+          <input data-sub-id="` + i + '" oninput="session.subjects[this.getAttribute(\'data-sub-id\')]=new Subject(this.value)" type="text" value="' + sub.name + `" placeholder="Name des Faches" />
+          ` + html`<span class="danger delete"><button class="fas fa-trash" title="Fach löschen" onclick="session.subjects = np.remove(session.subjects, parseInt(this.parentNode.parentNode.querySelector('input[data-sub-id]').getAttribute('data-sub-id'))); np.reload()"></button></span>` + `
+        </div></li>
+      `
+    })
+
+    subview += '</ul>'
+
+    return html`
+      <div class="adduser fas fa-plus-circle" onclick="session.subjects.push(new Subject('Neues Fach')); np.reload()"></div>
+      <div class="hard center">
+        ` + subview + `
+      </div>
     `
   }
 }
