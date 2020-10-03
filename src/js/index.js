@@ -43,6 +43,14 @@ window.Subject = class Subject {
       return new Icon('futball')
     } else if (this.name.toLowerCase().includes('geschichte')) {
       return new Icon('landmark')
+    } else if (this.name.toLowerCase().includes('physik')) {
+      return new Icon('magnet')
+    } else if (this.name.toLowerCase().includes('werk')) {
+      return new Icon('hammer')
+    } else if (this.name.toLowerCase().includes('wirtschaft')) {
+      return new Icon('money-bill-wave')
+    } else if (this.name.toLowerCase().includes('englisch')) {
+      return new Icon('flag-usa')
     }
   }
 }
