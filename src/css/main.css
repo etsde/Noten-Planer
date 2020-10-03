@@ -125,18 +125,18 @@ nav,main {
   width: 75vw;
 }
 
-.users,.subjects li {
+.users li,.subjects li {
   list-style: none;
   margin-bottom: 10%;
 }
 
-.users,.subjects li div {
+.users li div,.subjects li div {
   background: var(--main);
   padding: 5%;
   border-radius: 10px;
 }
 
-.users,.subjects input {
+.users input,.subjects input {
   width: 60%;
   height: 30%;
 }

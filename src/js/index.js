@@ -1,21 +1,49 @@
 /* global np, session */
 
-var html = (a) => {
-  var b = ''
+var html = a => a.join('')
 
-  a.forEach((item) => {
-    b += item
-  })
-
-  return b
-}
-
-const $$ = document.querySelectorAll
+// const $$ = document.querySelectorAll
 const $ = document.querySelector
+
+class Icon {
+  constructor (name, type = 's') {
+    this.iconType = type
+    this.iconName = name
+  }
+
+  getHTML () {
+    return `<i class="${this.getClasses()}"></i>`
+  }
+
+  getClasses () {
+    return `fa${this.iconType || 's'} fa-${this.iconName || 'icons'}`
+  }
+}
 
 window.Subject = class Subject {
   constructor (name) {
     this.name = name
+    this.icon = this.getIcon()
+  }
+
+  getIcon () {
+    if (this.name.toLowerCase().includes('kunst')) {
+      return new Icon('palette')
+    } else if (this.name.toLowerCase().includes('mathe')) {
+      return new Icon('calculator')
+    } else if (this.name.toLowerCase().includes('deutsch')) {
+      return new Icon('book')
+    } else if (this.name.toLowerCase().includes('religion')) {
+      return new Icon('church')
+    } else if (this.name.toLowerCase().includes('chemie')) {
+      return new Icon('atom')
+    } else if (this.name.toLowerCase().includes('informatik')) {
+      return new Icon('file-code', 'r')
+    } else if (this.name.toLowerCase().includes('sport')) {
+      return new Icon('futball')
+    } else if (this.name.toLowerCase().includes('geschichte')) {
+      return new Icon('landmark')
+    }
   }
 }
 
