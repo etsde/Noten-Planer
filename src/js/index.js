@@ -220,7 +220,7 @@ window.addEventListener('load', () => {
   const body = document.querySelector('body')
   body.innerHTML += `
     <main></main>
-    <nav>${nav}</nav>
+    <nav class="border">${nav}</nav>
   `
 
   // ####################################
