@@ -51,7 +51,12 @@ window.Subject = class Subject {
       return new Icon('money-bill-wave')
     } else if (this.name.toLowerCase().includes('englisch')) {
       return new Icon('flag-usa')
+    } else if (this.name.toLowerCase().includes('musik')) {
+      return new Icon('music')
     }
+
+    // Else:
+    return new Icon('box')
   }
 }
 
