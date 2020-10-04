@@ -183,3 +183,16 @@ input.input.large {
 .delete, .adduser, .delete * {
   cursor: pointer;
 }
+
+/* Colors: */
+.green {
+  color: #569320;
+}
+
+.white {
+  color: #fff;
+}
+
+.larger-icon {
+  font-size: 150%;
+}

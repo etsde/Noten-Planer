@@ -119,7 +119,7 @@ var content = {
     session.students.forEach((std, i) => {
       stdview += html`
         <li><div class="student">
-          <i class="fas fa-caret-square-down"></i>
+          <i class="fas green larger-icon fa-caret-square-down"></i>
           <input data-student-id="` + i + '" oninput="session.students[this.getAttribute(\'data-student-id\')]=new Student(this.value)" type="text" value="' + std.fullName + `" placeholder="Name des Schülers" />
           ` + html`<span class="danger delete"><button class="fas fa-trash" title="Schüler löschen" onclick="session.students = np.remove(session.students, parseInt(this.parentNode.parentNode.querySelector('input[data-student-id]').getAttribute('data-student-id'))); np.reload()"></button></span>` + `
         </div></li>
@@ -141,7 +141,7 @@ var content = {
     session.subjects.forEach((sub, i) => {
       subview += html`
         <li><div class="subject">
-          <i class="fas fa-caret-square-down"></i>
+          <i class="fas green larger-icon fa-caret-square-down"></i>
           <input data-sub-id="` + i + '" oninput="session.subjects[this.getAttribute(\'data-sub-id\')]=new Subject(this.value)" type="text" value="' + sub.name + `" placeholder="Name des Faches" />
           ` + html`<span class="danger delete"><button class="fas fa-trash" title="Fach löschen" onclick="session.subjects = np.remove(session.subjects, parseInt(this.parentNode.parentNode.querySelector('input[data-sub-id]').getAttribute('data-sub-id'))); np.reload()"></button></span>` + `
         </div></li>

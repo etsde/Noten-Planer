@@ -1,24 +1,25 @@
 ### Home:
-- [ ] Import
-- [ ] Export
+- [x] Import
+- [x] Export
 
 ### Schüler:
-- [ ] Schüler hinzufügen
+- [x] Schüler hinzufügen
 - [x] Schülerübersicht
 - Schülerdetails:
-  - [ ] Name
+  - [x] Name
   - [ ] Fächer / Kurse
-  - [ ] Schüler löschen
+  - [x] Schüler löschen
   - [ ] Bericht exportieren (.csv)
 
 ### Fächer
-- [ ] Fächerübersicht
-- [ ] Fach hinzufügen
+- [x] Fächerübersicht
+- [x] Fach hinzufügen
 - Fachdetails
-  - [ ] Fach löschen
-  - [ ] Fachname
+  - [x] Fach löschen
+  - [x] Fachname
   - [ ] Bericht exportieren (.csv)
   - [ ] Notenspiegel
+  - [ ] Fachicon
   - [ ] Fachfarbe
   - Teilnehmer
     - [ ] Bericht exportieren (.csv)
