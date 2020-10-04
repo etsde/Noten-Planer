@@ -53,6 +53,8 @@ window.Subject = class Subject {
       return new Icon('flag-usa')
     } else if (this.name.toLowerCase().includes('musik')) {
       return new Icon('music')
+    } else if (this.name.toLowerCase().includes('sach')) {
+      return new Icon('microscope')
     }
 
     // Else:
@@ -141,7 +143,7 @@ var content = {
     session.subjects.forEach((sub, i) => {
       subview += html`
         <li><div class="subject">
-          <i class="fas green larger-icon point fa-caret-square-down"></i>
+          <i onclick="np.viewSubject(this.parentNode.querySelector('input[data-sub-id]').getAttribute('data-sub-id'))" class="fas green larger-icon point fa-caret-square-down"></i>
           <input data-sub-id="` + i + '" oninput="session.subjects[this.getAttribute(\'data-sub-id\')]=new Subject(this.value)" type="text" value="' + sub.name + `" placeholder="Name des Faches" />
           ` + html`<span class="danger delete"><button class="fas fa-trash" title="Fach löschen" onclick="session.subjects = np.remove(session.subjects, parseInt(this.parentNode.parentNode.querySelector('input[data-sub-id]').getAttribute('data-sub-id'))); np.reload()"></button></span>` + `
         </div></li>
@@ -224,6 +226,14 @@ window.addEventListener('load', () => {
   // ####################################
 
   window.np = {
+    viewSubject: function (id) {
+      const sub = session.subjects[id]
+      const icon = new Icon(sub.icon.iconName, sub.icon.iconType)
+
+      np.main.innerHTML = `
+        <h1 class="center">${icon.getHTML()} ${sub.name}</h1>
+      `
+    },
     move: function (arr, oldIndex, newIndex) {
       if (newIndex >= arr.length) {
         var k = newIndex - arr.length + 1
