@@ -196,3 +196,7 @@ input.input.large {
 .larger-icon {
   font-size: 150%;
 }
+
+.point {
+  cursor: pointer;
+}
