@@ -21,9 +21,13 @@ class Icon {
 }
 
 window.Subject = class Subject {
-  constructor (name) {
+  constructor (name, preset = {}) {
     this.name = name
     this.icon = this.getIcon()
+
+    this.preset = preset
+
+    this.members = preset.members || []
   }
 
   getIcon () {
@@ -131,7 +135,7 @@ var content = {
     stdview += '</ul>'
 
     return html`
-      <div class="adduser fas fa-plus-circle" onclick="session.students.push(new Student('Neuer Schüler')); np.reload()"></div>
+      <div class="adduser fas fa-plus-circle" onclick="session.students.push(new Student('Neuer Schüler'));np.reload()"></div>
       <div class="hard center">
         ` + stdview + `
       </div>
@@ -144,7 +148,7 @@ var content = {
       subview += html`
         <li><div class="subject">
           <i onclick="np.viewSubject(this.parentNode.querySelector('input[data-sub-id]').getAttribute('data-sub-id'))" class="fas green larger-icon point fa-caret-square-down"></i>
-          <input data-sub-id="` + i + '" oninput="session.subjects[this.getAttribute(\'data-sub-id\')]=new Subject(this.value)" type="text" value="' + sub.name + `" placeholder="Name des Faches" />
+          <input data-sub-id="` + i + '" oninput="session.subjects[this.getAttribute(\'data-sub-id\')]=new Subject(this.value, this.preset||{})" type="text" value="' + sub.name + `" placeholder="Name des Faches" />
           ` + html`<span class="danger delete"><button class="fas fa-trash" title="Fach löschen" onclick="session.subjects = np.remove(session.subjects, parseInt(this.parentNode.parentNode.querySelector('input[data-sub-id]').getAttribute('data-sub-id'))); np.reload()"></button></span>` + `
         </div></li>
       `
@@ -153,7 +157,7 @@ var content = {
     subview += '</ul>'
 
     return html`
-      <div class="adduser fas fa-plus-circle" onclick="session.subjects.push(new Subject('Neues Fach')); np.reload()"></div>
+      <div class="adduser fas fa-plus-circle" onclick="session.subjects.push(new Subject('Neues Fach'));np.reload()"></div>
       <div class="hard center">
         ` + subview + `
       </div>
@@ -230,8 +234,39 @@ window.addEventListener('load', () => {
       const sub = session.subjects[id]
       const icon = new Icon(sub.icon.iconName, sub.icon.iconType)
 
+      const members = (function () {
+        var members = ''
+        sub.members.forEach((member, i) => {
+          members += `
+            <tr>
+              <td>${member.fullName}</td>
+              <td>${new Icon('caret-square-down').getHTML()}</td>
+              <td onclick="session.subjects[${id}].members=np.remove(session.subjects[${id}].members,${i});np.viewSubject(${id})">${new Icon('trash').getHTML()}</td>
+            </tr>
+          `
+        })
+        return members
+      })()
+
       np.main.innerHTML = `
         <h1 class="center">${icon.getHTML()} ${sub.name}</h1>
+        <div class="hard center">
+          <div class="members">
+            <div class="adduser fas fa-plus-circle" onclick="session.subjects[${id}].members.push(session.students[0]);np.viewSubject(${id})"></div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Schüler</th>
+                  <th>Details</th>
+                  <th>Entfernen</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${members}
+              </tbody>
+            </table>
+          </div>
+        </div>
       `
     },
     move: function (arr, oldIndex, newIndex) {
