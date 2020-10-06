@@ -241,7 +241,7 @@ window.addEventListener('load', () => {
             <tr>
               <td>${member.fullName}</td>
               <td>${new Icon('caret-square-down').getHTML()}</td>
-              <td onclick="session.subjects[${id}].members=np.remove(session.subjects[${id}].members,${i});np.viewSubject(${id})">${new Icon('trash').getHTML()}</td>
+              <td class="danger delete point" onclick="session.subjects[${id}].members=np.remove(session.subjects[${id}].members,${i});np.viewSubject(${id})">${new Icon('trash').getHTML()}</td>
             </tr>
           `
         })
