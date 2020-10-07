@@ -19,12 +19,12 @@
   - [x] Fachname
   - [ ] Bericht exportieren (.csv)
   - [ ] Notenspiegel
-  - [ ] Fachicon
+  - [x] Fachicon
   - [ ] Fachfarbe
   - Teilnehmer
     - [ ] Bericht exportieren (.csv)
-    - [ ] Teilnehmer hinzufügen
-    - [ ] Teilnehmer löschen
+    - [x] Teilnehmer hinzufügen
+    - [x] Teilnehmer löschen
     - Teilnehmerdetails
       - [ ] Note
       - [ ] Aus wie vielen Noten?
