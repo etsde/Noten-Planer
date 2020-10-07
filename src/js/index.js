@@ -1,5 +1,7 @@
 /* global np, session */
 
+/* eslint no-unused-vars:1,one-var:0,space-before-function-paren:0,padded-blocks:0,no-trailing-spaces:0,no-multiple-empty-lines:0 */
+
 var html = a => a.join('')
 
 // const $$ = document.querySelectorAll
@@ -330,7 +332,7 @@ window.addEventListener('load', () => {
       }
       np.reload()
     },
-    exp: function (elem) {
+    exp: function () {
       try {
         navigator.clipboard.writeText(np.encode(JSON.stringify(session)))
         window.alert('Export in Zwischenablage kopiert.')
@@ -347,7 +349,7 @@ window.addEventListener('load', () => {
     },
     currentPage: session['np-currentPage'] || 0,
     main: document.querySelector('body main'),
-    popup: function (text) {
+    popup: function () {
       $('html body .popup').innerHTML = ''
     },
     loadContent: function (navId) {
@@ -434,3 +436,17 @@ window.addEventListener('load', () => {
 
   np.loadContent(np.currentPage)
 })
+
+// Pin Lock:
+setTimeout(() => {
+  setInterval(() => {
+    if (!document.hasFocus() && (session.noLock !== true || session.noLock !== 1)) {
+      console.log('lock')
+    }
+  }, 300)
+}, 2000)
+
+// Default Pin:
+if (typeof session.pin !== 'string') {
+  session.pin = '0000'
+}
