@@ -20,7 +20,6 @@
   - [ ] Bericht exportieren (.csv)
   - [ ] Notenspiegel
   - [x] Fachicon
-  - [ ] Fachfarbe
   - Teilnehmer
     - [ ] Bericht exportieren (.csv)
     - [x] Teilnehmer hinzufügen
@@ -31,5 +30,5 @@
       - Zensurenliste
         - [ ] Zensur löschen
         - [ ] Zensur bearbeiten
-		- [ ] Zensurnotiz bearbeiten
+		    - [ ] Zensurnotiz bearbeiten
         - [ ] Zensur hinzufügen
