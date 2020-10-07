@@ -252,7 +252,19 @@ window.addEventListener('load', () => {
         <h1 class="center">${icon.getHTML()} ${sub.name}</h1>
         <div class="hard center">
           <div class="members">
-            <div class="adduser fas fa-plus-circle" onclick="session.subjects[${id}].members.push(session.students[0]);np.viewSubject(${id})"></div>
+            <div id="memberAdd">
+              ${(function () {
+                const p = 'addMemberToSubject__am2s__amts'
+                var a = ''
+
+                session.students.forEach((std, i) => {
+                  a += `<input type="radio" name="${p}" data-student-id="${i}"/><span> ${session.students[i].fullName}</span><br />`
+                })
+
+                return a
+              })()}
+            </div>
+            <div class="adduser fas fa-plus-circle" onclick="session.subjects[${id}].members.push(session.students[document.querySelector('#memberAdd').querySelector('input:checked').getAttribute('data-student-id')]);np.viewSubject(${id})"></div>
             <table>
               <thead>
                 <tr>
@@ -266,6 +278,7 @@ window.addEventListener('load', () => {
               </tbody>
             </table>
           </div>
+          ${'<br />'.repeat(40)}
         </div>
       `
     },
