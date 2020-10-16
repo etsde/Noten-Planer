@@ -220,6 +220,7 @@ window.addEventListener('load', () => {
       --text: #000;
       --mtxt: #fff;
       --a-color: #c4c2c2;
+      --btn-color: #404040;
       --green: #1f6243;
     }
   </style>`
@@ -517,12 +518,13 @@ window.addEventListener('load', () => {
             <nav class="border">${nav}</nav>
           `
           np.loadContent(np.currentPage)
+          window.navigator.vibrate(50)
         } else {
           // Error
+          window.navigator.vibrate([100, 30, 100, 30, 100, 30])
           setTimeout(() => {
-            window.navigator.vibrate([100, 30, 100, 30, 100, 30])
             lock()
-          }, 500)
+          }, 390)
         }
       }
 
