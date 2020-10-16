@@ -446,7 +446,21 @@ const lock = () => {
   document.body.innerHTML = `
     <h1 class="center bold">Gesperrt</h1>
     <h5 class="center">Bitte Pin eingeben</h5>
-
+    <div class="pin">
+      <b class="hard center" id="pin_io">_ _ _ _</b>
+      <div class="grid-container">
+        <div class="pin-1">1</div>
+        <div class="pin-2">2</div>
+        <div class="pin-3">3</div>
+        <div class="pin-4">4</div>
+        <div class="pin-5">5</div>
+        <div class="pin-6">6</div>
+        <div class="pin-7">7</div>
+        <div class="pin-8">8</div>
+        <div class="pin-9">9</div>
+        <div class="pin-0">0</div>
+      </div>
+    </div>
   `
   document.body.classList.add('locked')
 }

@@ -14,6 +14,52 @@ body
   &.locked
     background-color: var(--main)
     color: #fff
+    .grid-container
+      display: grid
+      grid-template-columns: 1fr 1fr 1fr
+      grid-template-rows: 1fr 1fr 1fr 1fr
+      gap: 0px 0px
+      grid-template-areas: "pin-1 pin-2 pin-3" "pin-4 pin-5 pin-6" "pin-7 pin-8 pin-9" ". pin-0 ."
+
+      *[class*="pin-"]
+        text-align: center
+        border-radius: 50vw
+        background: #9f08d1
+        font-family: "Open Sans", Arial, sans-serif
+        margin: 20%
+        padding: 5%
+        cursor: pointer
+
+
+      .pin-1
+        grid-area: pin-1
+
+      .pin-2
+        grid-area: pin-2
+
+      .pin-3
+        grid-area: pin-3
+
+      .pin-4
+        grid-area: pin-4
+
+      .pin-5
+        grid-area: pin-5
+
+      .pin-6
+        grid-area: pin-6
+
+      .pin-7
+        grid-area: pin-7
+
+      .pin-8
+        grid-area: pin-8
+
+      .pin-9
+        grid-area: pin-9
+
+      .pin-0
+        grid-area: pin-0
 
 nav
   background-color: var(--main)
@@ -182,3 +228,6 @@ table
 
 .bold
   font-weight: bold
+
+#pin_io
+  font-size: 150%

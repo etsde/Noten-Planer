@@ -32,3 +32,9 @@
         - [ ] Zensur bearbeiten
 		    - [ ] Zensurnotiz bearbeiten
         - [ ] Zensur hinzufügen
+
+### Display Lock
+- [x] Lock on open
+- [x] Lock on not focus
+- [ ] Unlock
+- [ ] Change Pin
