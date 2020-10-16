@@ -400,6 +400,7 @@ window.addEventListener('load', () => {
       }
     },
     reload: function () {
+      session.unlockOneTime = true
       window.location = window.location.href
     },
     newUser: function (std) {
@@ -541,8 +542,12 @@ if (typeof session.pin !== 'string') {
 
 // Lock on open:
 window.addEventListener('load', () => {
-  if (session.noLock !== true && session.noLock !== 1) {
-    if (np.io.unlocked !== true) {
+  // unlockOneTime:
+  if (session.unlockOneTime === true) {
+    session.unlockOneTime = false
+  } else {
+    if (session.noLock !== true && session.noLock !== 1) {
+      np.io.reloadOnUnlock = true
       lock()
     }
   }
@@ -575,8 +580,13 @@ window.addEventListener('load', () => {
             <main></main>
             <nav class="border">${nav}</nav>
           `
-          np.loadContent(np.currentPage)
+
           window.navigator.vibrate(50)
+          if (np.io.reloadOnUnlock) {
+            np.reload()
+          } else {
+            np.loadContent(np.currentPage)
+          }
         } else {
           // Error
           window.navigator.vibrate([100, 30, 100, 30, 100, 30])
