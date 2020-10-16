@@ -440,8 +440,15 @@ window.addEventListener('load', () => {
 // Pin Lock:
 setTimeout(() => {
   setInterval(() => {
-    if (!document.hasFocus() && (session.noLock !== true || session.noLock !== 1)) {
-      console.log('lock')
+    if (!document.hasFocus()) {
+      if (session.noLock !== true && session.noLock !== 1) {
+        // Lock:
+        console.log('lock')
+        document.body.innerHTML = `
+          <h1 class="center bold">Gesperrt</h1>
+        `
+        document.body.classList.add('locked')
+      }
     }
   }, 300)
 }, 2000)

@@ -11,6 +11,9 @@
 body
   background-color: var(--bg)
   color: var(--text)
+  &.locked
+    background-color: var(--main)
+    color: #fff
 
 nav
   background-color: var(--main)
@@ -64,7 +67,7 @@ nav div.nav-item
     cursor: pointer
     color: var(--a-color)
 
-main h1, h2, h3, h4, h5, h6
+h1, h2, h3, h4, h5, h6
   font-family: "Roboto", Arial Black, sans-serif
 
 nav, main
@@ -176,3 +179,6 @@ table
     border: 1px solid #000
   th
     border: 1px solid #000
+
+.bold
+  font-weight: bold
