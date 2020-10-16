@@ -381,6 +381,7 @@ window.addEventListener('load', () => {
       a = window.btoa(a)
       return a
     },
+    io: {},
     decode: function (a, key = 42) {
       a = window.atob(a.toString())
       a = a.split(';')
@@ -438,16 +439,23 @@ window.addEventListener('load', () => {
 })
 
 // Pin Lock:
+
+const lock = () => {
+  // Lock:
+  console.log('lock')
+  document.body.innerHTML = `
+    <h1 class="center bold">Gesperrt</h1>
+    <h5 class="center">Bitte Pin eingeben</h5>
+
+  `
+  document.body.classList.add('locked')
+}
+
 setTimeout(() => {
   setInterval(() => {
     if (!document.hasFocus()) {
       if (session.noLock !== true && session.noLock !== 1) {
-        // Lock:
-        console.log('lock')
-        document.body.innerHTML = `
-          <h1 class="center bold">Gesperrt</h1>
-        `
-        document.body.classList.add('locked')
+        lock()
       }
     }
   }, 300)
@@ -457,3 +465,12 @@ setTimeout(() => {
 if (typeof session.pin !== 'string') {
   session.pin = '0000'
 }
+
+// Lock on open:
+window.addEventListener('load', () => {
+  if (session.noLock !== true && session.noLock !== 1) {
+    if (np.io.unlocked !== true) {
+      lock()
+    }
+  }
+})
