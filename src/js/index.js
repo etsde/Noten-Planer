@@ -7,6 +7,29 @@ var html = a => a.join('')
 // const $$ = document.querySelectorAll
 const $ = document.querySelector
 
+class Grade {
+  constructor (name, value = 1) {
+    this.name = name
+    this.value = value
+    this.isGood()
+  }
+
+  isGood () {
+    this.status = this.value <= 2 ? 'good' : (this.value >= 5 ? 'bad' : 'neutral')
+    this.getColor()
+  }
+
+  getColor () {
+    if (this.status === 'good') {
+      this.color = '#1cff99'
+    } else if (this.status === 'neutral') {
+      this.color = '#e3d962'
+    } else {
+      this.color = '#e95555'
+    }
+  }
+}
+
 class Icon {
   constructor (name, type = 's') {
     this.iconType = type
@@ -121,10 +144,12 @@ var content = {
         </ul>
       </div>
     ` + html`
-      <div class="center change_pin">
-        <h3>Pin ändern</h3>
-        <input type="number" id="new_pin" /><br />
-        <button onclick="let pi=document.querySelector('#new_pin').value.toString();if(pi.length!==4){alert('Pin muss vier Ziffern enthalten!')}else{session.pin=pi;alert('Pin erfolgreich geändert!');np.reload()}">Pin ändern</button>
+      <div class="hard center">
+        <div style="width: 60vw" class="center container change_pin">
+          <h3>Pin ändern</h3>
+          <input type="number" id="new_pin" /><br />
+          <button onclick="let pi=document.querySelector('#new_pin').value.toString();if(pi.length!==4){alert('Pin muss vier Ziffern enthalten!')}else{session.pin=pi;alert('Pin erfolgreich geändert!');np.reload()}">Pin ändern</button>
+        </div>
       </div>
     `
   },
@@ -250,7 +275,7 @@ window.addEventListener('load', () => {
           members += `
             <tr>
               <td>${member.fullName}</td>
-              <td>${new Icon('caret-square-down').getHTML()}</td>
+              <td onclick="np.viewMember(${i},${id})"><i class="point larger-icon green ${new Icon('caret-square-down').getClasses()}"></i></td>
               <td class="danger delete point" onclick="session.subjects[${id}].members=np.remove(session.subjects[${id}].members,${i});np.viewSubject(${id})">${new Icon('trash').getHTML()}</td>
             </tr>
           `
@@ -297,6 +322,33 @@ window.addEventListener('load', () => {
 
       np.main.innerHTML = `
         <h1 class="center">${new Icon('user').getHTML()} ${std.fullName}</h1>
+      `
+    },
+    viewMember: function (id, subID) {
+      const member = session.subjects[subID].members[id]
+      const { fullName, grades } = member
+
+      np.main.innerHTML = `
+        <h1 class="center">${new Icon('user').getHTML()} ${fullName}</h1>
+        <div class="grades hard center">
+          <ul>
+            ${(function () {
+              var res = ''
+
+              grades || [].forEach((grade, i) => {
+                const g = new Grade(grade.name, grade.value)
+
+                res += `
+                  <li class="no-li">
+                    <h3 class="center" style="color:${g.color};">${g.name}</h3>
+                  </li>
+                `
+              })
+
+              return res
+            })()}
+          </ul>
+        </div>
       `
     },
     move: function (arr, oldIndex, newIndex) {
