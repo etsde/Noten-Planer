@@ -36,5 +36,5 @@
 ### Display Lock
 - [x] Lock on open
 - [x] Lock on not focus
-- [ ] Unlock
+- [x] Unlock
 - [ ] Change Pin

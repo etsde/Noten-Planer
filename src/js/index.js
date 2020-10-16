@@ -366,7 +366,7 @@ window.addEventListener('load', () => {
     },
     loadContentInToMain: function () {
       const cp = navigation.items[np.currentPage]
-      np.main.innerHTML = `
+      document.querySelector('main').innerHTML = `
         <h1 class="center">${cp.name}</h1>
         ${content[cp.href]()}
       `
@@ -449,16 +449,16 @@ const lock = () => {
     <div class="pin">
       <b class="hard center" id="pin_io">_ _ _ _</b>
       <div class="grid-container">
-        <div class="pin-1">1</div>
-        <div class="pin-2">2</div>
-        <div class="pin-3">3</div>
-        <div class="pin-4">4</div>
-        <div class="pin-5">5</div>
-        <div class="pin-6">6</div>
-        <div class="pin-7">7</div>
-        <div class="pin-8">8</div>
-        <div class="pin-9">9</div>
-        <div class="pin-0">0</div>
+        <div class="pin-1" onclick="np.enterPinCode(this.innerHTML)">1</div>
+        <div class="pin-2" onclick="np.enterPinCode(this.innerHTML)">2</div>
+        <div class="pin-3" onclick="np.enterPinCode(this.innerHTML)">3</div>
+        <div class="pin-4" onclick="np.enterPinCode(this.innerHTML)">4</div>
+        <div class="pin-5" onclick="np.enterPinCode(this.innerHTML)">5</div>
+        <div class="pin-6" onclick="np.enterPinCode(this.innerHTML)">6</div>
+        <div class="pin-7" onclick="np.enterPinCode(this.innerHTML)">7</div>
+        <div class="pin-8" onclick="np.enterPinCode(this.innerHTML)">8</div>
+        <div class="pin-9" onclick="np.enterPinCode(this.innerHTML)">9</div>
+        <div class="pin-0" onclick="np.enterPinCode(this.innerHTML)">0</div>
       </div>
     </div>
   `
@@ -486,5 +486,47 @@ window.addEventListener('load', () => {
     if (np.io.unlocked !== true) {
       lock()
     }
+  }
+
+  // Unlock
+  np.enterPinCode = num => {
+    const io = document.querySelector('#pin_io')
+    io.innerHTML = (p => {
+      function count (a, b) {
+        var c = a
+        var i = 0
+        while (c.includes(b)) {
+          c = c.replace(b, '')
+          i++
+        }
+        return i
+      }
+
+
+
+      const onlyThisOne = count(io.innerHTML, '_') === 1
+
+      if (onlyThisOne) {
+        const previewPIN = io.innerHTML.replace('_', `${p}`)
+        if (previewPIN.replace(/ /g, '') === session.pin) {
+          // Unlocked
+          const body = document.querySelector('body')
+          body.classList.remove('locked')
+          body.innerHTML = `
+            <main></main>
+            <nav class="border">${nav}</nav>
+          `
+          np.loadContent(np.currentPage)
+        } else {
+          // Error
+          setTimeout(() => {
+            window.navigator.vibrate([100, 30, 100, 30, 100, 30])
+            lock()
+          }, 500)
+        }
+      }
+
+      return io.innerHTML.replace('_', `${p}`)
+    })(num)
   }
 })
