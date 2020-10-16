@@ -120,6 +120,12 @@ var content = {
           </li>` + `
         </ul>
       </div>
+    ` + html`
+      <div class="center change_pin">
+        <h3>Pin ändern</h3>
+        <input type="number" id="new_pin" /><br />
+        <button onclick="let pi=document.querySelector('#new_pin').value.toString();if(pi.length!==4){alert('Pin muss vier Ziffern enthalten!')}else{session.pin=pi;alert('Pin erfolgreich geändert!');np.reload()}">Pin ändern</button>
+      </div>
     `
   },
   students: function () {
