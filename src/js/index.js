@@ -7,9 +7,19 @@ var html = a => a.join('')
 // const $$ = document.querySelectorAll
 const $ = document.querySelector
 
-class Grade {
-  constructor (name, value = 1) {
+class Category {
+  constructor (name, worth = 50) {
     this.name = name
+    this.worth = parseInt(worth)
+
+    this.procent = `${this.worth}%`
+  }
+}
+
+class Grade {
+  constructor (name, value = 1, category) {
+    this.name = name
+    this.category = category
     this.value = value
     this.isGood()
   }
@@ -331,16 +341,17 @@ window.addEventListener('load', () => {
       np.main.innerHTML = `
         <h1 class="center">${new Icon('user').getHTML()} ${fullName}</h1>
         <div class="grades hard center">
-          <ul>
+          <ul style="width:60vw">
             ${(function () {
-              var res = ''
+              var res = '';
 
-              grades || [].forEach((grade, i) => {
+              (grades || []).forEach((grade, i) => {
                 const g = new Grade(grade.name, grade.value)
 
                 res += `
-                  <li class="no-li">
-                    <h3 class="center" style="color:${g.color};">${g.name}</h3>
+                  <li class="no-li container">
+                    <h3 class="center"><input style="color:${g.color};background:var(--btn-color)" type="text" oninput="session.subjects[${subID}].members[${id}].grades[${i}]=new Grade(this.value,g.value)" value="${g.name}" /></h3>
+                    <input type="number" style="color:${g.color};background:var(--btn-color)" oninput="session.subjects[${subID}].members[${id}].grades[${i}]=new Grade(g.name,this.value)" min="1" max="6" value="${g.value}" class="grade_raw" />
                   </li>
                 `
               })
