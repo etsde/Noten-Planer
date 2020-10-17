@@ -7,9 +7,7 @@
 - [x] Schülerübersicht
 - Schülerdetails:
   - [x] Name
-  - [ ] Fächer / Kurse
   - [x] Schüler löschen
-  - [ ] Bericht exportieren (.csv)
 
 ### Fächer
 - [x] Fächerübersicht
@@ -18,7 +16,7 @@
   - [x] Fach löschen
   - [x] Fachname
   - [ ] Bericht exportieren (.csv)
-  - [ ] Notenschnitt
+  - [x] Notenschnitt
   - [x] Fachicon
   - Teilnehmer
     - [ ] Bericht exportieren (.csv)

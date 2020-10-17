@@ -332,6 +332,13 @@ window.addEventListener('load', () => {
 
       np.main.innerHTML = `
         <h1 class="center">${icon.getHTML()} ${sub.name}</h1>
+        <h3 class="center">Notenschnitt: ${(function () {
+          var res = 0;
+          (sub.members || []).forEach((member) => {
+            res += member.grade || 0
+          })
+          return res / (sub.members.length - 1)
+        })()}</h3>
         <div class="hard center">
           <div class="members">
             <div id="memberAdd">
