@@ -215,7 +215,7 @@ var content = {
         catview += `
           <li class="no-li container">
             <h3><input type="text" placeholder="Name der Kategorie" value="${category.name}" oninput="session.categories[${i}]=new Category(this.value,session.categories[${i}].worth)" /></h3>
-            <input type="number" min="0" max="100" step="1" value="${category.worth}" placeholder="Wert der Kategorie" />%
+            <input type="number" oninput="session.categories[${i}]=new Category(session.categories[${i}].name,this.value)" min="0" max="100" step="1" value="${category.worth}" placeholder="Wert der Kategorie" />%
             <br /><span class="danger delete">
               <button class="fas fa-trash" title="Kategorie löschen" onclick="session.categories=np.remove(session.categories,${i});np.reload()"></button>
             </span>
