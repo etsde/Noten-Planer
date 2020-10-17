@@ -1,4 +1,4 @@
-/* global np, session */
+/* global np, session, Blob */
 
 /* eslint no-unused-vars:1,one-var:0,space-before-function-paren:0,padded-blocks:0,no-trailing-spaces:0,no-multiple-empty-lines:0 */
 
@@ -339,6 +339,15 @@ window.addEventListener('load', () => {
           })
           return res / (sub.members.length - 1)
         })()}</h3>
+        <div class="hard center"><button class="center" onclick="np.dl('${
+          (function () {
+            var members = ''
+            sub.members.forEach((member) => {
+              members += `${member.fullName};${member.grade.toString().replace(/\./g, ',') || '?'};${Math.round(member.grade).toString().replace(/\./g, ',') || '?'}\\n`
+            })
+            return 'Name;Note;Gerundete Note' + '\\n' + members
+          })()// .replace(/\n/, '\\\\n')
+        }','${sub.name.replace(/'/g, "\\'")}.csv','text/csv')">Bericht exportieren (.csv)</button></div>
         <div class="hard center">
           <div class="members">
             <div id="memberAdd">
@@ -505,6 +514,14 @@ window.addEventListener('load', () => {
       }
       arr.splice(newIndex, 0, arr.splice(oldIndex, 1)[0])
       return arr
+    },
+    dl: function (content = '', name = 'download.txt', type = 'text/plain') {
+      const blob = new Blob([content], { type, endings: 'native' })
+      const a = document.createElement('a')
+      a.download = name
+      a.href = URL.createObjectURL(blob)
+      a.click()
+      URL.revokeObjectURL(blob)
     },
     remove: function (arr, value) {
       var index = value
