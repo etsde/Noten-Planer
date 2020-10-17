@@ -24,7 +24,7 @@
     - [x] Teilnehmer löschen
     - Teilnehmerdetails
       - [x] Note
-      - [ ] Aus wie vielen Noten?
+      - [x] Aus wie vielen Noten?
       - Zensurenliste
         - [x] Zensur löschen
         - [x] Zensur bearbeiten
