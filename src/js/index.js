@@ -593,11 +593,7 @@ window.addEventListener('load', () => {
           `
 
           window.navigator.vibrate(50)
-          if (np.io.reloadOnUnlock) {
-            np.reload()
-          } else {
-            np.loadContent(np.currentPage)
-          }
+          np.reload()
         } else {
           // Error
           window.navigator.vibrate([100, 30, 100, 30, 100, 30])
