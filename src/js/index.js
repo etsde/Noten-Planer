@@ -369,7 +369,7 @@ window.addEventListener('load', () => {
 
       np.main.innerHTML = `
         <h1 class="center">${new Icon('user').getHTML()} ${fullName}</h1>
-        <div class="adduser fas fa-plus-circle" onclick="session.subjects[${subID}].members[${id}].grades.push(new Category('Neue Note', 50));np.viewMember(${id},${subID})"></div>
+        <div class="adduser fas fa-plus-circle" onclick="session.subjects[${subID}].members[${id}].grades.push(new Grade('Neue Note',3,session.categories[0]));np.viewMember(${id},${subID})"></div>
         <div class="grades hard center">
           <ul style="width:60vw">
             ${(function () {
@@ -380,9 +380,23 @@ window.addEventListener('load', () => {
 
                 res += `
                   <li class="no-li container">
-                    <h3 class="center"><input style="color:${g.color};background:var(--btn-color)" type="text" oninput="session.subjects[${subID}].members[${id}].grades[${i}]=new Grade(this.value,session.subjects[${subID}].members[${id}].grades[${i}].value)" value="${g.name}" /></h3>
-                    <input type="number" style="color:${g.color};background:var(--btn-color)" oninput="session.subjects[${subID}].members[${id}].grades[${i}]=new Grade(session.subjects[${subID}].members[${id}].grades[${i}].name,this.value)" onfocusout="np.viewMember(${id},${subID})" min="1" max="6" value="${g.value}" class="grade_raw" />
-                    <span class="danger delete">
+                    <h3 class="center"><input style="color:${g.color};background:var(--btn-color)" type="text" oninput="session.subjects[${subID}].members[${id}].grades[${i}]=new Grade(this.value,session.subjects[${subID}].members[${id}].grades[${i}].value,session.subjects[${subID}].members[${id}].grades[${i}].category)" value="${g.name}" /></h3>
+                    <input type="number" style="color:${g.color};background:var(--btn-color)" oninput="session.subjects[${subID}].members[${id}].grades[${i}]=new Grade(session.subjects[${subID}].members[${id}].grades[${i}].name,this.value,session.subjects[${subID}].members[${id}].grades[${i}].category)" onfocusout="np.viewMember(${id},${subID})" min="1" max="6" value="${g.value}" class="grade_raw" />
+                    <br />
+                    <select onchange="session.subjects[${subID}].members[${id}].grades[${i}]=new Grade(session.subjects[${subID}].members[${id}].grades[${i}].name,session.subjects[${subID}].members[${id}].grades[${i}].value,session.categories[this.selectedIndex])">
+                      ${(function() {
+                        var res = ''
+
+                        session.categories.forEach((category) => {
+                          res += `
+                            <option>${category.name} (${category.procent})</option>
+                          `
+                        })
+
+                        return res
+                      }())}
+                    </select>
+                    <br /><span class="danger delete">
                       <button class="fas fa-trash" title="Note löschen" onclick="session.subjects[${subID}].members[${id}].grades=np.remove(session.subjects[${subID}].members[${id}].grades,${i});np.viewMember(${id},${subID})"></button>
                     </span>
                   </li>
