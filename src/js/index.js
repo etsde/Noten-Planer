@@ -322,6 +322,7 @@ window.addEventListener('load', () => {
             <tr>
               <td>${member.fullName}</td>
               <td onclick="np.viewMember(${i},${id})"><i class="point larger-icon green ${new Icon('caret-square-down').getClasses()}"></i></td>
+              <td>${member.grade || '?'}</td><!-- Grade -->
               <td class="danger delete point" onclick="session.subjects[${id}].members=np.remove(session.subjects[${id}].members,${i});np.viewSubject(${id})">${new Icon('trash').getHTML()}</td>
             </tr>
           `
@@ -351,6 +352,7 @@ window.addEventListener('load', () => {
                 <tr>
                   <th>Schüler</th>
                   <th>Details</th>
+                  <th>Note</th>
                   <th>Entfernen</th>
                 </tr>
               </thead>
