@@ -593,7 +593,7 @@ window.addEventListener('load', () => {
           `
 
           window.navigator.vibrate(50)
-          np.reload()
+          np.reload() // Fixes #1
         } else {
           // Error
           window.navigator.vibrate([100, 30, 100, 30, 100, 30])
