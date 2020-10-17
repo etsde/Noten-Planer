@@ -18,7 +18,7 @@
   - [x] Notenschnitt
   - [x] Fachicon
   - Teilnehmer
-    - [ ] Bericht exportieren (.csv)
+    - [x] Bericht exportieren (.csv)
     - [x] Teilnehmer hinzufügen
     - [x] Teilnehmer löschen
     - Teilnehmerdetails
