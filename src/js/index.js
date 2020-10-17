@@ -209,6 +209,13 @@ var content = {
   },
   categories: function () {
     const cview = (() => {
+      if (session.cLockOT !== true) {
+        session.cLockOT = true
+        lock()
+      } else {
+        session.cLockOT = false
+      }
+
       var catview = ''
 
       session.categories.forEach((category, i) => {
