@@ -29,12 +29,18 @@
       - [ ] Aus wie vielen Noten?
       - Zensurenliste
         - [ ] Zensur löschen
-        - [ ] Zensur bearbeiten
-		    - [ ] Zensurnotiz bearbeiten
+        - [x] Zensur bearbeiten
+		    - [x] Zensurname bearbeiten
         - [ ] Zensur hinzufügen
 
 ### Display Lock
 - [x] Lock on open
 - [x] Lock on not focus
 - [x] Unlock
-- [ ] Change Pin
+- [x] Change Pin
+
+### Kategorien
+- [x] Default Categories
+- [x] Delete Categories
+- [x] Add Categories
+- [x] Edit Categories

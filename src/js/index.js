@@ -206,6 +206,35 @@ var content = {
         ` + subview + `
       </div>
     `
+  },
+  categories: function () {
+    const cview = (() => {
+      var catview = ''
+
+      session.categories.forEach((category, i) => {
+        catview += `
+          <li class="no-li container">
+            <h3><input type="text" placeholder="Name der Kategorie" value="${category.name}" oninput="session.categories[${i}]=new Category(this.value,session.categories[${i}].worth)" /></h3>
+            <input type="number" min="0" max="100" step="1" value="${category.worth}" placeholder="Wert der Kategorie" />%
+            <br /><span class="danger delete">
+              <button class="fas fa-trash" title="Kategorie löschen" onclick="session.categories=np.remove(session.categories,${i});np.reload()"></button>
+            </span>
+          </li>
+        `
+      })
+
+      return catview
+    })()
+
+    return `
+      <div class="adduser fas fa-plus-circle" onclick="session.categories.push(new Category('Neue Kategorie', 50));np.reload()"></div>
+      <div class="hard center">
+        <ul style="width:60vw">
+          ${cview}
+        </ul>
+        ${'<br />'.repeat(40)}
+      </div>
+    `
   }
 }
 
@@ -235,15 +264,15 @@ const navigation = {
         type: 's',
         name: 'boxes'
       }
-    }/* ,
+    },
     {
-      name: 'Deine Klasse',
-      href: 'classroom',
+      name: 'Kategorien',
+      href: 'categories',
       icon: {
         type: 's',
-        name: 'school'
+        name: 'percent'
       }
-    } */
+    }
   ]
 }
 navigation.items.forEach((item, i) => {
@@ -346,7 +375,7 @@ window.addEventListener('load', () => {
               var res = '';
 
               (grades || []).forEach((grade, i) => {
-                const g = new Grade(grade.name, grade.value)
+                const g = new Grade(grade.name, grade.value, grade.category)
 
                 res += `
                   <li class="no-li container">
@@ -505,6 +534,11 @@ window.addEventListener('load', () => {
 
   session.students = !session.students ? [] : session.students
   session.subjects = !session.subjects ? [] : session.subjects
+  session.categories = !session.categories ? [
+    new Category('Mündlich', 25),
+    new Category('Schriftlich', 50),
+    new Category('Fachspezifisch', 25)
+  ] : session.categories
 
   np.loadContent(np.currentPage)
 })
