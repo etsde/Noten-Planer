@@ -18,20 +18,20 @@
   - [x] Fach löschen
   - [x] Fachname
   - [ ] Bericht exportieren (.csv)
-  - [ ] Notenspiegel
+  - [ ] Notenschnitt
   - [x] Fachicon
   - Teilnehmer
     - [ ] Bericht exportieren (.csv)
     - [x] Teilnehmer hinzufügen
     - [x] Teilnehmer löschen
     - Teilnehmerdetails
-      - [ ] Note
+      - [x] Note
       - [ ] Aus wie vielen Noten?
       - Zensurenliste
-        - [ ] Zensur löschen
+        - [x] Zensur löschen
         - [x] Zensur bearbeiten
 		    - [x] Zensurname bearbeiten
-        - [ ] Zensur hinzufügen
+        - [x] Zensur hinzufügen
 
 ### Display Lock
 - [x] Lock on open

@@ -380,8 +380,6 @@ window.addEventListener('load', () => {
         if (typeof grades !== 'object') {
           session.subjects[subID].members[id].grades = []
           grades = session.subjects[subID].members[id].grades
-        } else {
-        
         }
 
         // ### Step 1
@@ -440,8 +438,12 @@ window.addEventListener('load', () => {
       const member = session.subjects[subID].members[id]
       const { fullName, grades, grade } = member
 
+      // Special Background Color
+      document.body.style.backgroundColor = new Grade('', grade).color || '#fff'
+
       np.main.innerHTML = `
         <h1 class="center">${new Icon('user').getHTML()} ${fullName}</h1>
+        <h3 class="center">${new Icon(session.subjects[subID].icon.iconName, session.subjects[subID].iconType).getHTML()} ${session.subjects[subID].name}</h3>
         <h4 class="center">Gesamtnote: ${grade || 'Wird errechnet...'}</h4>
         <br /><br />
         <div class="adduser fas fa-plus-circle" onclick="session.subjects[${subID}].members[${id}].grades.push(new Grade('Neue Note',3,session.categories[0]));np.viewMember(${id},${subID})"></div>
@@ -455,8 +457,9 @@ window.addEventListener('load', () => {
 
                 res += `
                   <li class="no-li container">
-                    <h3 class="center"><input style="color:${g.color};background:var(--btn-color)" type="text" oninput="session.subjects[${subID}].members[${id}].grades[${i}]=new Grade(this.value,session.subjects[${subID}].members[${id}].grades[${i}].value,session.subjects[${subID}].members[${id}].grades[${i}].category)" value="${g.name}" /></h3>
-                    <input type="number" style="color:${g.color};background:var(--btn-color)" oninput="session.subjects[${subID}].members[${id}].grades[${i}]=new Grade(session.subjects[${subID}].members[${id}].grades[${i}].name,this.value,session.subjects[${subID}].members[${id}].grades[${i}].category)" onfocusout="np.viewMember(${id},${subID})" min="1" max="6" value="${g.value}" class="grade_raw" />
+                    <h3 class="center"><input type="text" oninput="session.subjects[${subID}].members[${id}].grades[${i}]=new Grade(this.value,session.subjects[${subID}].members[${id}].grades[${i}].value,session.subjects[${subID}].members[${id}].grades[${i}].category)" value="${g.name}" /></h3>
+                    <i style="color:${g.color}" class="${new Icon('circle').getClasses()}"></i><br />
+                    <input type="number" oninput="session.subjects[${subID}].members[${id}].grades[${i}]=new Grade(session.subjects[${subID}].members[${id}].grades[${i}].name,this.value,session.subjects[${subID}].members[${id}].grades[${i}].category)" onfocusout="np.viewMember(${id},${subID})" min="1" max="6" value="${g.value}" class="grade_raw" />
                     <br />
                     <select onchange="session.subjects[${subID}].members[${id}].grades[${i}]=new Grade(session.subjects[${subID}].members[${id}].grades[${i}].name,session.subjects[${subID}].members[${id}].grades[${i}].value,session.categories[this.selectedIndex])">
                       ${(function() {
