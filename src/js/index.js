@@ -549,6 +549,7 @@ window.addEventListener('load', () => {
       $('html body .popup').innerHTML = ''
     },
     loadContent: function (navId) {
+      document.body.style.backgroundColor = '#fff'
       np.currentPage = navId
 
       document.querySelectorAll('body nav div.nav-item').forEach((item) => {
