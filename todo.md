@@ -15,7 +15,6 @@
 - Fachdetails
   - [x] Fach löschen
   - [x] Fachname
-  - [ ] Bericht exportieren (.csv)
   - [x] Notenschnitt
   - [x] Fachicon
   - Teilnehmer

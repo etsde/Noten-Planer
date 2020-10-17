@@ -453,7 +453,7 @@ window.addEventListener('load', () => {
       np.main.innerHTML = `
         <h1 class="center">${new Icon('user').getHTML()} ${fullName}</h1>
         <h3 class="center">${new Icon(session.subjects[subID].icon.iconName, session.subjects[subID].iconType).getHTML()} ${session.subjects[subID].name}</h3>
-        <h4 class="center">Gesamtnote: ${grade || 'Wird errechnet...'} aus ${grades.length || 0} Noten</h4>
+        <h4 class="center">Gesamtnote: ${grade || 'Wird errechnet...'} aus ${grades.length || 0} Note(n)</h4>
         <br /><br />
         <div class="adduser fas fa-plus-circle" onclick="session.subjects[${subID}].members[${id}].grades.push(new Grade('Neue Note',3,session.categories[0]));np.viewMember(${id},${subID})"></div>
         <div class="grades hard center">
