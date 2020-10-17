@@ -371,11 +371,79 @@ window.addEventListener('load', () => {
       `
     },
     viewMember: function (id, subID) {
+      const final = (function() {
+        // Calculate final grade
+        let final = 0
+
+        let { grades } = session.subjects[subID].members[id]
+
+        if (typeof grades !== 'object') {
+          session.subjects[subID].members[id].grades = []
+          grades = session.subjects[subID].members[id].grades
+        } else {
+        
+        }
+
+        // ### Step 1
+        const categories = {};
+        (grades || []).forEach((grade) => {
+          const { category, value } = grade
+          let { worth } = category
+          worth = `${worth}@${category.name}`
+
+          categories[worth] = typeof categories[worth] === 'object' ? categories[worth] : []
+          categories[worth].push(value)
+        })
+        // ###
+
+        // ### Step 2
+        function average(arr) {
+          var res = 0
+          const l = arr.length
+          for (const value of arr) {
+            res += parseFloat(value)
+          }
+          res = res / l
+          return res
+        }
+
+        for (const [key, values] of Object.entries(categories)) {
+          categories[key] = average(values)
+        }
+        // ###
+
+        // ### Step 3
+        for (const [key, value] of Object.entries(categories)) {
+          const worth = parseFloat(key.split('@')[0])
+          const v = value * worth
+
+          categories[key] = v
+        }
+        // ###
+
+        // ### Step 4
+        for (const value of Object.entries(categories)) {
+          final += value[1]
+        }
+        // ###
+
+        // ### Step 5
+        final = final / 100
+        // ###
+
+        return final
+
+      }())
+      session.subjects[subID].members[id].grade = final
+
+
       const member = session.subjects[subID].members[id]
-      const { fullName, grades } = member
+      const { fullName, grades, grade } = member
 
       np.main.innerHTML = `
         <h1 class="center">${new Icon('user').getHTML()} ${fullName}</h1>
+        <h4 class="center">Gesamtnote: ${grade || 'Wird errechnet...'}</h4>
+        <br /><br />
         <div class="adduser fas fa-plus-circle" onclick="session.subjects[${subID}].members[${id}].grades.push(new Grade('Neue Note',3,session.categories[0]));np.viewMember(${id},${subID})"></div>
         <div class="grades hard center">
           <ul style="width:60vw">
@@ -396,7 +464,7 @@ window.addEventListener('load', () => {
 
                         session.categories.forEach((category) => {
                           res += `
-                            <option>${category.name} (${category.procent})</option>
+                            <option ${g.category === category ? 'selected="selected"' : ''}>${category.name} (${category.procent})</option>
                           `
                         })
 
