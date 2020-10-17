@@ -343,7 +343,7 @@ window.addEventListener('load', () => {
           (function () {
             var members = ''
             sub.members.forEach((member) => {
-              members += `${member.fullName};${member.grade.toString().replace(/\./g, ',') || '?'};${Math.round(member.grade).toString().replace(/\./g, ',') || '?'}\\n`
+              members += `${member.fullName};${(member.grade || 0).toString().replace(/\./g, ',') || '?'};${Math.round((member.grade || 0)).toString().replace(/\./g, ',') || '?'}\\n`
             })
             return 'Name;Note;Gerundete Note' + '\\n' + members
           })()// .replace(/\n/, '\\\\n')
