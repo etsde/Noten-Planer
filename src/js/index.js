@@ -350,8 +350,8 @@ window.addEventListener('load', () => {
 
                 res += `
                   <li class="no-li container">
-                    <h3 class="center"><input style="color:${g.color};background:var(--btn-color)" type="text" oninput="session.subjects[${subID}].members[${id}].grades[${i}]=new Grade(this.value,g.value)" value="${g.name}" /></h3>
-                    <input type="number" style="color:${g.color};background:var(--btn-color)" oninput="session.subjects[${subID}].members[${id}].grades[${i}]=new Grade(g.name,this.value)" min="1" max="6" value="${g.value}" class="grade_raw" />
+                    <h3 class="center"><input style="color:${g.color};background:var(--btn-color)" type="text" oninput="session.subjects[${subID}].members[${id}].grades[${i}]=new Grade(this.value,session.subjects[${subID}].members[${id}].grades[${i}].value)" value="${g.name}" /></h3>
+                    <input type="number" style="color:${g.color};background:var(--btn-color)" oninput="session.subjects[${subID}].members[${id}].grades[${i}]=new Grade(session.subjects[${subID}].members[${id}].grades[${i}].name,this.value)" min="1" max="6" value="${g.value}" class="grade_raw" />
                   </li>
                 `
               })
