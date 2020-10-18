@@ -386,6 +386,33 @@ window.addEventListener('load', () => {
       np.main.innerHTML = `
         <h1 class="center">${new Icon('user').getHTML()} ${std.fullName}</h1>
 
+        <div class="hard center"><button class="center" onclick="np.dl('${(function() {
+            let res = 'Fach;Note;Gerundete Note'
+
+            const name = std.fullName
+            const subs = session.subjects || []
+
+            for (const sub of subs) {
+              const { members } = sub
+              const sname = sub.name
+
+              for (const member of members) {
+                const { fullName } = member
+                let { grade } = member
+
+                if (name === fullName) {
+                  grade = new Grade('final', grade, new Category('final', 100))
+
+                  res += `\\n${sname};${(grade.value || '?').toString().replace(/\./g, ',')};${Math.round(grade.value || 0) < 1 ? '?' : Math.round(grade.value || 0).toString().replace(/\./g, ',')}`
+
+                  break
+                }
+              }
+            }
+
+            return res
+          }())}','${std.fullName.replace(/'/g, "\\'")}.csv','text/csv')">Bericht exportieren (.csv)</button></div>
+
         <div class="hard center">
           <table>
             <thead>

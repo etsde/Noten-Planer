@@ -6,8 +6,10 @@
 - [x] Schüler hinzufügen
 - [x] Schülerübersicht
 - Schülerdetails:
+  - [x] Bericht exportieren (.csv)
   - [x] Name
   - [x] Schüler löschen
+  - [x] Fächer
 
 ### Fächer
 - [x] Fächerübersicht
