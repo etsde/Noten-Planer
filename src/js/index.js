@@ -352,17 +352,16 @@ window.addEventListener('load', () => {
           <div class="members">
             <div id="memberAdd">
               ${(function () {
-                const p = 'addMemberToSubject__am2s__amts'
-                var a = ''
+                var a = 'Schüler hinzufügen: <select id="memberAdd">'
 
                 session.students.forEach((std, i) => {
-                  a += `<input type="radio" name="${p}" data-student-id="${i}"/><span> ${session.students[i].fullName}</span><br />`
+                  a += `<option>${session.students[i].fullName}</option>`
                 })
 
-                return a
+                return a + '</select>'
               })()}
             </div>
-            <div class="adduser fas fa-plus-circle" onclick="session.subjects[${id}].members.push(session.students[document.querySelector('#memberAdd').querySelector('input:checked').getAttribute('data-student-id')]);np.viewSubject(${id})"></div>
+            <div class="adduser fas fa-plus-circle" onclick="session.subjects[${id}].members.push(session.students[document.querySelector('#memberAdd').selectedIndex.]);np.viewSubject(${id})"></div>
             <table>
               <thead>
                 <tr>
