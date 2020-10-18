@@ -386,6 +386,63 @@ window.addEventListener('load', () => {
 
       np.main.innerHTML = `
         <h1 class="center">${new Icon('user').getHTML()} ${std.fullName}</h1>
+
+        <div class="hard center">
+          <table>
+            <thead>
+              <th>Fach</th>
+              <th>Note</th>
+              <th>Gerundete Note</th>
+              <th>Status</th>
+              <th>Details</th>
+            </thead>
+            <tbody>
+              ${(function() {
+                  let res = ''
+
+                  const name = std.fullName
+                  const subs = session.subjects || []
+                  let found = false
+                  let i = 0
+                  let j = 0
+
+                  for (const sub of subs) {
+                    const { members } = sub
+                    const sname = sub.name
+
+                    for (const member of members) {
+                      const { fullName } = member
+                      let { grade } = member
+
+                      if (name === fullName) {
+                        found = true
+
+                        grade = new Grade('final', grade, new Category('final', 100))
+
+                        res += `
+                          <td>${sname}</td>
+                          <td>${grade.value || '?'}</td>
+                          <td>${Math.round(grade.value || 0) < 1 ? '?' : Math.round(grade.value || 0)}</td>
+                          <td><i style="color:${grade.color};" class="${new Icon('circle').getClasses()}"></i></td>
+                          <td><i onclick="np.viewMember(${j},${i})" class="point larger-icon green ${new Icon('caret-square-down').getClasses()}"></i></td>
+                        `
+
+                        break
+                      }
+                      j += 1
+                    }
+
+                    if (found) {
+                      break
+                    }
+                    i += 1
+                  }
+
+                  return res
+                }())}
+            </tbody>
+          </table>
+        </div>
       `
     },
     viewMember: function (id, subID) {
