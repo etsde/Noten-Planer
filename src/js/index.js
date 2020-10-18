@@ -169,7 +169,7 @@ var content = {
     session.students.forEach((std, i) => {
       stdview += html`
         <li><div class="student">
-          <!-- <i onclick="np.viewStudent(this.parentNode.querySelector('input[data-student-id]').getAttribute('data-student-id'))" class="fas green larger-icon point fa-caret-square-down"></i> -->
+          <i onclick="np.viewStudent(this.parentNode.querySelector('input[data-student-id]').getAttribute('data-student-id'))" class="fas green larger-icon point fa-caret-square-down"></i>
           <input data-student-id="` + i + '" oninput="session.students[this.getAttribute(\'data-student-id\')]=new Student(this.value)" type="text" value="' + std.fullName + `" placeholder="Name des Schülers" />
           ` + html`<span class="danger delete"><button class="fas fa-trash" title="Schüler löschen" onclick="session.students = np.remove(session.students, parseInt(this.parentNode.parentNode.querySelector('input[data-student-id]').getAttribute('data-student-id'))); np.reload()"></button></span>` + `
         </div></li>
