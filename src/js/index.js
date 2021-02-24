@@ -361,7 +361,7 @@ window.addEventListener('load', () => {
                 return a + '</select>'
               })()}
             </div>
-            <div class="adduser fas fa-plus-circle" onclick="session.subjects[${id}].members.push(session.students[document.querySelector('#memberAdd').selectedIndex.]);np.viewSubject(${id})"></div>
+            <div class="adduser fas fa-plus-circle" onclick="session.subjects[${id}].members.push(session.students[document.querySelector('#memberAdd select').selectedIndex]);np.viewSubject(${id})"></div>
             <table>
               <thead>
                 <tr>
